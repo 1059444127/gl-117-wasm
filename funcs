@@ -1,0 +1,17 @@
+glCallList
+glDeleteLists
+glEndList
+glGetDoublev
+glInitNames
+glLightModeli
+glLoadName
+glNewList
+glPopAttrib
+glPushAttrib
+glPushName
+glRenderMode
+glSelectBuffer
+glTexCoord2d
+glVertex2d
+gluBuild2DMipmaps
+gluPickMatrix

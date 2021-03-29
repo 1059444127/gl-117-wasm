@@ -1,0 +1,11 @@
+/* Use SDL mixer library */
+#mesondefine HAVE_SDL_MIXER
+
+/* Use SDL net library */
+#mesondefine HAVE_SDL_NET
+
+/* Base data directory */
+#mesondefine DATADIR
+
+/* Package version string */
+#mesondefine PACKAGE_VERSION

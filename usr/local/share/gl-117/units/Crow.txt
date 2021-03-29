@@ -1,0 +1,21 @@
+impact = 2
+manoeverability = 0.4
+nimbility = 0.72
+thrust = 0.25
+shield = 60
+rot.theta = 90
+rot.gamma = 70
+zoom = 0.41
+flares = 20
+chaffs = 20
+ammo = 1000
+dualshot = false
+cube = 0.24
+racks = 4
+rackload.0 = 350
+rackload.1 = 1200
+rackload.2 = 1200
+rackload.3 = 350
+
+
+# ADD MORE (Search&Replace this text)

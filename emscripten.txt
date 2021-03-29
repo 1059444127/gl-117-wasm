@@ -1,0 +1,23 @@
+[binaries]
+c = 'emcc'
+cpp = 'em++'
+ar = 'emar'
+#exe_wrapper = 'node'
+
+[properties]
+root = 'system'
+c_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1', '-O3', '-g0']
+c_link_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0']
+cpp_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0', '-s', 'USE_SDL=2','-s', 'USE_SDL_NET=2', '-s', 'USE_SDL_MIXER=2', '-Wno-non-pod-varargs', '-s', 'USE_REGAL=1' ]
+cpp_link_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0', '-lSDL2', '-lSDL2_net', '-lGL', '--use-preload-plugins', '--preload-file', '../usr', '-s', 'USE_REGAL=1' ]
+shared_lib_suffix = 'html'
+static_lib_suffix = 'html'
+shared_module_suffix = 'html'
+exe_suffix = 'html'
+
+[host_machine]
+system = 'emscripten'
+cpu_family = 'x86'
+cpu = 'i686'
+endian = 'little'
+

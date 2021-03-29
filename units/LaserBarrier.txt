@@ -1,0 +1,16 @@
+impact = 2000
+manoeverability = 0
+nimbility = 0
+thrust = 0
+shield = 1000
+rot.theta = 90
+rot.gamma = 70
+zoom = 12.0
+ammo = 0
+dualshot = false
+cubex = 0.8
+cubey = 11
+cubez = 11
+
+
+# ADD MORE (Search&Replace this text)

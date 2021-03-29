@@ -1,0 +1,12 @@
+impact = 5
+manoeverability = 0
+nimbility = 0
+thrust = 0
+shield = 1
+zoom = 0.35
+cubex = 0.18
+cubey = 0.02
+cubez = 0.18
+ttl = 100
+
+# ADD MORE (Search&Replace this text)

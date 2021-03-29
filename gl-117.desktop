@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=2.0
+Type=Application
+Name=GL-117
+Comment=Action Flight Simulator
+Exec=gl-117
+Icon=gl-117
+Terminal=false
+Hidden=false
+Categories=Game;Simulation;
+Keywords=fighter;aircraft;simulator;
