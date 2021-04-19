@@ -36,7 +36,8 @@ TODO list:
 - Eugeni Andreeschev: 3d model
 */
 
-#include "SDL_video.h"
+#include "/home/elchaschab/build/gl4es/include/gl4esinit.h"
+#include "SDL2/SDL_video.h"
 #ifndef IS_MAIN_H
 
 #include "game/globals.h"
@@ -1792,7 +1793,9 @@ void myFirstInit ()
   DISPLAY_DEBUG("Loading textures");
   Load3ds load3ds;
   load3ds.setTextureDir (Directory::getTextures (""));
+  DISPLAY_DEBUG("Loading textures 1");
   texgrass = new Texture (Directory::getTextures ("grass1.tga"), 0, 1, false);
+  DISPLAY_DEBUG("Loading textures 2");
   texrocks = new Texture (Directory::getTextures ("rocks1.tga"), 0, 1, false);
   texwater = new Texture (Directory::getTextures ("water1.tga"), 0, 1, false);
   texsand = new Texture (Directory::getTextures ("sand1.tga"), 0, 1, false);
@@ -2531,6 +2534,8 @@ void sdlMainLoop ()
 // set screen to (width, height, bpp, fullscreen), return 0 on error
 int setScreen (int w, int h, int b, int f)
 {
+  initialize_gl4es();
+  DISPLAY_INFO("Set Screen 1");
   int rgb_size [3];
   switch (b)
   {
@@ -2551,16 +2556,22 @@ int setScreen (int w, int h, int b, int f)
       rgb_size [2] = 8;
       break;
   }
+  DISPLAY_INFO("Set Screen 2");
   SDL_GL_SetAttribute (SDL_GL_RED_SIZE, rgb_size [0]);
   SDL_GL_SetAttribute (SDL_GL_GREEN_SIZE, rgb_size [1]);
   SDL_GL_SetAttribute (SDL_GL_BLUE_SIZE, rgb_size [2]);
   SDL_GL_SetAttribute (SDL_GL_DEPTH_SIZE, 16);
   SDL_GL_SetAttribute (SDL_GL_DOUBLEBUFFER, 1);
+  DISPLAY_INFO("Set Screen 3");
   if (sdlwindow)
   {
+	DISPLAY_INFO("Set Screen 3a");
     int display = SDL_GetWindowDisplayIndex(sdlwindow);
+    DISPLAY_INFO("Set Screen 3b");
     if (f)
     {
+        DISPLAY_INFO("Set Screen 3c");
+
       if (SDL_SetWindowFullscreen(sdlwindow, SDL_WINDOW_FULLSCREEN) < 0)
       {
         return 0;
@@ -2568,6 +2579,8 @@ int setScreen (int w, int h, int b, int f)
       fullscreen = f;
       wantfullscreen = f;
       int num_modes = SDL_GetNumDisplayModes(display);
+      DISPLAY_INFO("Set Screen 3d");
+
       for (int i = 0; i < num_modes; i++)
       {
         SDL_DisplayMode mode;
@@ -2615,27 +2628,30 @@ int setScreen (int w, int h, int b, int f)
   }
   else
   {
+	DISPLAY_INFO("Set Screen 4");
     Uint32 video_flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
     if (f)
     {
       video_flags |= SDL_WINDOW_FULLSCREEN;
     }
+	DISPLAY_INFO("Set Screen 4a");
     sdlwindow = SDL_CreateWindow("GL-117", SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED, w, h, video_flags);
-
+	DISPLAY_INFO("Set Screen 4b");
     if (!sdlwindow)
     {
       return 0;
     }
+	DISPLAY_INFO("Set Screen 4c");
     context = SDL_GL_CreateContext(sdlwindow);
     if (!context)
     {
       SDL_DestroyWindow(sdlwindow);
       return 0;
     }
-
+	DISPLAY_INFO("Set Screen 4d");
     glViewport (0, 0, (GLint) w, (GLint) h);
-
+	DISPLAY_INFO("Set Screen 4e");
     // take over results in global variables
     width = w;
     height = h;
@@ -2645,6 +2661,7 @@ int setScreen (int w, int h, int b, int f)
     wantheight = h;
     wantfullscreen = f;
   }
+  DISPLAY_INFO("Set Screen 5");
   return 1;
 }
 
@@ -2703,11 +2720,13 @@ void config_test (int argc, char **argv)
     exit (EXIT_INIT);
   }
   configinit = true;
+  DISPLAY_INFO("Using SDL 1");
 
   int valids = -1; // valid screen mode? (-1 = no mode)
   int n = 0;
   while (n < 4)
   {
+	DISPLAY_INFO("Using SDL loop");
     if (setScreen (resolution [n] [0], resolution [n] [1], resolution [n] [2], resolution [n] [3]))
     {
       bppi [n] = bpp; // store bpp setting
@@ -2720,7 +2739,7 @@ void config_test (int argc, char **argv)
     }
     n ++;
   }
-
+  DISPLAY_INFO("Using SDL 2");
   if (valids == -1)
   {
     DISPLAY_FATAL("No working display modes found! Try editing the file conf yourself. You may not be able to play this game.");
@@ -2738,6 +2757,7 @@ void config_test (int argc, char **argv)
   wantwidth = width; // requested values for next restart
   wantheight = height;
   wantfullscreen = fullscreen;
+  DISPLAY_INFO("Using SDL end");
 }
 
 // get startup help screen
@@ -3885,8 +3905,12 @@ int main (int argc, char **argv)
   createMenu ();
 
   DISPLAY_DEBUG("Entering SDL main loop");
+  #ifdef __EMSCRIPTEN__
   emscripten_set_main_loop(sdlMainLoop,0,1); // simulate GLUT's main loop (above)
-
+#else
+  while(1)
+    sdlMainLoop();
+#endif
   return 0; // exit without signaling errors
 }
 

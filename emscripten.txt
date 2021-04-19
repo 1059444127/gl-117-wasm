@@ -5,11 +5,11 @@ ar = 'emar'
 #exe_wrapper = 'node'
 
 [properties]
-root = 'system'
-c_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1', '-O3', '-g0']
-c_link_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0']
-cpp_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0', '-s', 'USE_SDL=2','-s', 'USE_SDL_NET=2', '-s', 'USE_SDL_MIXER=2', '-Wno-non-pod-varargs', '-s', 'USE_REGAL=1' ]
-cpp_link_args = ['-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0', '-lSDL2', '-lSDL2_net', '-lGL', '--use-preload-plugins', '--preload-file', '../usr', '-s', 'USE_REGAL=1' ]
+root = '/home/elchaschab/emsdk/upstream/emscripten/system/'
+c_args = ['-s', 'FULL_ES2=1', '-I/home/elchaschab/build/gl4es/include', '-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1', '-O3', '-g0']
+c_link_args = ['-s', 'FULL_ES2=1', '-L/home/elchaschab/build/gl4es/lib/', '-lGL', '-s', 'INITIAL_MEMORY=419430400','-s', 'TOTAL_STACK=52428800', '-s', 'WASM=1','-O3', '-g0']
+cpp_args = ['-s', 'TOTAL_MEMORY=2GB', '-s', 'FULL_ES2=1', '-I/home/elchaschab/build/gl4es/include', '-s', 'INITIAL_MEMORY=1GB','-s', 'TOTAL_STACK=524288000', '-s', 'WASM=1','-O3', '-g0', '-s', 'USE_SDL=2','-s', 'USE_SDL_NET=2', '-s', 'USE_SDL_MIXER=2', '-Wno-non-pod-varargs' ]
+cpp_link_args = [ '-s', 'TOTAL_MEMORY=2GB', '-s', 'FULL_ES2=1', '-L/home/elchaschab/build/gl4es/lib/', '-lGL', '-s', 'INITIAL_MEMORY=1GB','-s', 'TOTAL_STACK=524288000', '-s', 'WASM=1','-O3', '-g0', '--use-preload-plugins', '--preload-file', '../usr', '-s', 'USE_SDL=2','-s', 'USE_SDL_NET=2', '-s', 'USE_SDL_MIXER=2' ]
 shared_lib_suffix = 'html'
 static_lib_suffix = 'html'
 shared_module_suffix = 'html'

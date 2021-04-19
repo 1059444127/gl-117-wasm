@@ -25,13 +25,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <limits>
 #include "model3d/Model3d.h"
 #include "opengl/GlPrimitives.h"
 #include "loadbitmap/Bitmap.h"
 #include "logging/Logging.h"
 
-
+using std::numeric_limits;
 
 Texture::Texture ()
 {
@@ -151,6 +151,14 @@ bool Texture::loadFromTGA (const std::string &filename, int alphaprogram, bool m
   name = filename;
   this->mipmap = mipmap;
   this->alpha = alpha;
+
+//  unsigned char data_short[width * height * 2];
+//  for(size_t i = 0; i < width * height; ++i) {
+//	  uint32_t& lng = *(uint32_t*)&data[i];
+//	  uint16_t& shrt = *(uint16_t*)&data_short[i];
+//	  double r = double(lng) / numeric_limits<uint32_t>().max();
+//	  shrt = r * numeric_limits<uint16_t>().max();
+//  }
 
   textureID = gl.registerTexture (filename, data, width, height, mipmap);
 

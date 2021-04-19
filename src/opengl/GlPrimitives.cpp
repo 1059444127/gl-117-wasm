@@ -112,7 +112,7 @@ int GlPrimitives::registerTexture (const std::string &name, const unsigned char 
 //  if (!antialiasing) disableLinearTexture (numTextures, mipmap);
 //  else enableLinearTexture (numTextures, mipmap);
 
-//  if (!mipmap)
+// if (!mipmap)
     glTexImage2D (GL_TEXTURE_2D, 0, 4, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 //  else
 //    gluBuild2DMipmaps (GL_TEXTURE_2D, 4, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
